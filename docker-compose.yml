@@ -1,0 +1,46 @@
+services:
+
+  go-app:
+    build: ./backend
+    container_name: go_app
+    ports:
+      - "8084:8084"
+    networks:
+      - appnet
+
+  frontend:
+    build: ./frontend
+    container_name: go_frontend
+    ports:
+      - "8080:80"
+    networks:
+      - appnet
+
+  postgres:
+    image: postgres:15-alpine
+    container_name: go_postgres
+    environment:
+      POSTGRES_DB: appdb
+      POSTGRES_USER: appuser
+      POSTGRES_PASSWORD: apppass
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - appnet
+
+  adminer:
+    image: adminer
+    container_name: go_adminer
+    ports:
+      - "8081:8080"
+    networks:
+      - appnet
+
+volumes:
+  pgdata:
+
+networks:
+  appnet:
+    driver: bridge
