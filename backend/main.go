@@ -11,7 +11,7 @@ import (
 	_ "github.com/lib/pq"
 )
 
-var token string = "8798591994:AAE95a1wABPXHOnFAaB1rn37IV3GcbUKcnA"
+var token string = "12354535345asdfgh12314154sdfdgdh"
 var wg = sync.WaitGroup{}
 
 type User struct {
